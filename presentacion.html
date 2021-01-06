@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Introducción a R Markdown</title>
+    <meta charset="utf-8" />
+    <link href="presentacion_files/remark-css-0.0.1/default.css" rel="stylesheet" />
+    <link href="presentacion_files/remark-css-0.0.1/duke-blue.css" rel="stylesheet" />
+    <link href="presentacion_files/remark-css-0.0.1/chocolate-fonts.css" rel="stylesheet" />
+  </head>
+  <body>
+    <textarea id="source">
+
+
+background-image: url("b1.png")
+class:center
+
+# Introducción a R Markdown
+## Eduardo Méndez
+2021-01-06
+
+---
+
+background-image: url("b2.png")
+background-position: 50%
+
+
+
+# Crisis de replicabilidad:
+
+--
+
+__Diagnóstico__ sobre el estado de las ciencias a inicios del milenio. Vicios en métodos, procedimientos, herramientas, incentivos e instituciones (entre otros), que implican que los resultados aceptados por la comunidad científica no puedan ser replicados.
+
+--
+
+**Open Access**: (respuesta)
+
+*"We need to take information, wherever it is stored, make our copies and share them with the world. We need to take stuff that's out of copyright and add it to the archive. We need to buy secret databases and put them on the Web. We need to download scientific journals and upload them to file sharing networks. We need to fight for Guerilla Open Access."* (Swartz, 2008)
+
+&lt;div class="figure" style="text-align: right"&gt;
+&lt;img src="https://media1.tenor.com/images/e7f4367f9b7419d71dfeb82a8a288cc6/tenor.gif?itemid=18912314" alt="…" width="25%" /&gt;
+&lt;p class="caption"&gt;…&lt;/p&gt;
+&lt;/div&gt;
+
+
+---
+
+background-image: url("b2.png")
+background-position: 50%
+
+
+
+# Free &amp; Open Source software (FOSS)
+
+--
+
+_"Free as in freedom"_
+
+--
+
+- Accesibilidad a las herramientas, con la posibilidad de escrutinar, replicar resultados, reutilizar y modificar los códigos.
+
+--
+
+- *La Catedral v/s el Bazaar* (Raymond, 1999) `\(\rightarrow\)` Ventajas prácticas
+
+--
+
+.center[![Plot Caption](trends.gif)]
+
+---
+
+background-image: url("b2.png")
+background-position: 50%
+
+
+# [Literate Programming](https://en.wikipedia.org/wiki/Literate_programming) (Knuth, 1984) `\(\TeX\)`
+
+--
+
+**Programación literada/literaria:** Paradigma que enfatiza el hacer comprensible el proceso y la lógica tras los cálculos y procedimientos computacionales. Es una suerte de "higiene" al escribir código y comentarlo que facilita el ser comprendido por quien lo escribe así como terceros.
+
+--
+
+*"Instead of imagining that our main task is to instruct a computer what to do, let us concentrate rather on explaining to human beings what we want a computer to do."* (knuth1984)
+
+--
+
+&lt;div class="figure" style="text-align: center"&gt;
+&lt;img src="https://hackaday.com/wp-content/uploads/2016/06/program.jpg?w=800" alt="…" width="50%" /&gt;
+&lt;p class="caption"&gt;…&lt;/p&gt;
+&lt;/div&gt;
+
+
+---
+
+background-image: url("b2.png")
+background-position: 50%
+class: center
+
+
+# Markdown
+
+- Lenguaje de texto simple, que es similar en su fuente y salidas. Fácil de leer y de escribir. Hay muchas implementaciones con variaciones.
+
+--
+
+- __Objetivo:__ _"to write using an easy-to-read and easy-to-write plain text format, optionally convert it to structurally valid [XHTML](https://en.wikipedia.org/wiki/XHTML "XHTML") (or [HTML](https://en.wikipedia.org/wiki/HTML "HTML"))"_ 
+
+--
+
+## [WYSIWYG](https://en.wikipedia.org/wiki/WYSIWYG) *v/s* [WYSIWYM](https://en.wikipedia.org/wiki/WYSIWYM)
+
+
+
+&lt;div class="figure" style="text-align: center"&gt;
+&lt;img src="wysiwym.jpeg" alt="…" width="40%" /&gt;
+&lt;p class="caption"&gt;…&lt;/p&gt;
+&lt;/div&gt;
+
+
+---
+
+background-image: url("b2.png")
+background-position: 50%
+
+
+
+# R
+
+-   Es *FOSS*
+
+--
+
+-   Lenguaje + paquetes `install.packages("pakete")` `\(\rightarrow\)` Bazaar (~Catedral)
+
+--
+
+-   Libre acceso, publicidad y replicabilidad
+
+--
+
+-   Su uso y publicación *literate* facilita el aprendizaje y adopción
+
+
+---
+
+background-image: url("b2.png")
+background-position: 50%
+
+
+# Escribir con Markdown
+
+
+--
+
+- `&gt; Help &gt; Markdown Quick Reference` : R Markdown is an easy-to-write plain text format for creating dynamic documents and reports.
+
+--
+
+- __Spell Check__ `&gt; Tools &gt; Global Options &gt; Spelling`
+
+--
+
+- __Bibliografía con [Zotero](https://www.zotero.org/)__ 
+
+  - `Zotero: File   &gt; Export` `\(\rightarrow\)` como BibTeX _ó_ Better BibTeX a la carpeta de trabajo.
+
+--
+
+  - en `YAML` metadata: `bibliography: My Library.bib` 
+
+--
+
+  - En `Markdown` : `[@aut]` (...) con autocompĺetado (ver 1.4)
+  
+
+---
+
+background-image: url("b2.png")
+background-position: 50%
+
+
+
+# Usar R (y otros) para calcular y presentar resultados
+
+--
+
+-   __R Markdown__ : Los cálculos se corren fuera del `environment`. Medida de higiene que facilita la replicabilidad, pero es más demorosa.
+
+--
+
+-   Cada `chunk` tiene metadata con instrucciones sobre qué mostrar y cómo.
+
+--
+
+
+```r
+{r, titulo, opcion1= TRUE, opcion2 = FALSE }
+```
+
+
+--
+
+- Algunas [chunk options](https://bookdown.org/yihui/rmarkdown/r-code.html)
+
+--
+
+  - `echo`
+
+--
+
+  - `warning`, `message`, `error`. 
+
+--
+
+  - `include = FALSE` `\(\rightarrow\)` todas las anteriores
+
+--
+
+  - `cache = TRUE`: para cálculos costosos y demorosos.
+
+  
+- __Gráficas__
+
+--
+
+    - `fig.width` &amp; `fig.height` = `fig.dim = c(x, y)` `\(\rightarrow\)` graphic device
+    - `out.width` &amp; `out.height` `\(\rightarrow\)` porcentaje del espacio (a nivel de output)
+    - `fig.align` : left, center _o_ right
+
+---
+
+background-image: url("b2.png")
+background-position: 50%
+
+# YAML outputs &amp; templates
+
+--
+
+__YAML__ (Yet Another Markup Language): Contiene las instrucciones para convertir el plain text en un documento.
+
+--
+
+Existen templates (plantillas) creadas por terceros. El paquete `rticles` contiene varios formatos de artículos académicos
+
+
+```r
+install.packages("rticles")
+```
+
+
+---
+
+background-image: url("b2.png")
+background-position: 50%
+class: center
+
+# Recursos
+
+-   ["R Markdown: The definitive guide, cap. 2"](%22%3Chttps://bookdown.org/yihui/rmarkdown/basics.html%3E%22) (Xie et al, 2018)
+
+--
+
+-   [Reference Guide](https://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf) y [Cheatsheet](https://github.com/rstudio/cheatsheets/raw/master/rmarkdown-2.0.pdf) 
+
+
+.pull-left[
+![](https://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference-guide.png)
+]
+
+.pull-right[
+![](https://d33wubrfki0l68.cloudfront.net/65dffd1bdcaa0025006262164d98e8068e8b4387/c3895/wp-content/uploads/2018/08/rmarkdown-2.0.png)
+]
+
+
+
+
+---
+
+background-image: url("b1.png")
+
+
+# Referencias
+
+
+
+
+
+- 
+&lt;p&gt;&lt;cite&gt;Knuth, D. E.
+(1984).
+&amp;ldquo;Literate Programming&amp;rdquo;.
+In: &lt;em&gt;The Computer Journal&lt;/em&gt; 27.2, pp. 97&amp;ndash;111.
+ISSN: 0010-4620.
+DOI: &lt;a href="https://doi.org/10.1093/comjnl/27.2.97"&gt;10.1093/comjnl/27.2.97&lt;/a&gt;.&lt;/cite&gt;&lt;/p&gt;
+- 
+&lt;p&gt;&lt;cite&gt;Raymond, E.
+(1999).
+&amp;ldquo;The Cathedral and the Bazaar&amp;rdquo;.
+In: &lt;em&gt;Knowledge, Technology &amp;amp; Policy&lt;/em&gt; 12.3, pp. 23&amp;ndash;49.&lt;/cite&gt;&lt;/p&gt;
+- 
+&lt;p&gt;&lt;cite&gt;Swartz, A.
+(2008).
+&amp;ldquo;Guerilla Open Access Manifesto&amp;rdquo;.
+In: &lt;em&gt;Online-Ressource, URL http://www. openeverything. eu/guerilla-open-access-manifest&lt;/em&gt;.&lt;/cite&gt;&lt;/p&gt;
+- 
+&lt;p&gt;&lt;cite&gt;Xie, Y., J. J. Allaire, and G. Grolemund
+(2018).
+&lt;em&gt;R Markdown: The Definitive Guide&lt;/em&gt;.
+CRC Press.&lt;/cite&gt;&lt;/p&gt;
+
+
+
+Hecho con [**xaringan**](https://github.com/yihui/xaringan).
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create();
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
